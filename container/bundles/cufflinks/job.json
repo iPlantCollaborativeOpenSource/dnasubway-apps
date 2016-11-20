@@ -1,0 +1,42 @@
+{
+    "name": "cufflinks",
+    "appId": "dnasubway-cufflinks-singularity-stampede-2.1.1",
+    "maxRunTime": "04:00:00",
+    "batchQueue": "serial",
+    "archive": false,
+    "inputs": {
+        "query1": "agave://data.iplantcollaborative.org/vaughn/dnalc/docker/cufflinks-input.bam",
+        "BIAS_FASTA": "agave://data.iplantcollaborative.org/shared/iplant_DNA_subway/genomes/arabidopsis_thaliana/genome.fas",
+        "annotation": "agave://data.iplantcollaborative.org/shared/iplant_DNA_subway/genomes/arabidopsis_thaliana/annotation.gtf"
+    },
+    "parameter": {
+       "compatibleHitsNorm": false,
+        "gtf": false,
+        "guide_gtf": true,
+        "intronOverhangTolerance": 50,
+        "jobName": "cl12243",
+        "libraryType": "fr-firststrand",
+        "maxBundleLength": 3500000,
+        "maxIntronLength": 300000,
+        "minFragsPerTransfrag": 10,
+        "minIntronLength": 50,
+        "minIsoformFraction": "0.1",
+        "multiReadCorrect": false,
+        "noFauxReads": false,
+        "overhangTolerance": 10,
+        "overhangTolerance3": 600,
+        "preMrnaFraction": "0.15",
+        "smallAnchorFraction": "0.09",
+        "totalHitsNorm": true,
+        "trim3avgcovThresh": 10,
+        "trim3dropoffFrac": "0.1",
+        "upperQuartileNorm": false
+    },
+    "notifications": [
+        {
+            "url": "http://requestbin.agaveapi.co/1m1jkbl1?job_id=${JOB_ID}&status=${JOB_STATUS}",
+            "event": "*",
+            "persistent": true
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+  "name":"fastqc",
+  "appId": "dnasubway-fastqc-singularity-stampede-0.11.4.0",
+  "maxRunTime": "00:15:00",
+  "batchQueue": "development",
+  "archive": false,
+  "archiveSystem": "data.iplantcollaborative.org",
+  "inputs": {
+    "input": "agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/fastqc/SRR070572_hy5.fastq"
+  },
+  "parameters": {
+  },
+  "notifications": [
+    {
+      "url":"http://requestbin.agaveapi.co/1k6c17u1?job_id=${JOB_ID}&status=${JOB_STATUS}",
+      "event":"*",
+      "persistent":true
+    }
+  ]
+}

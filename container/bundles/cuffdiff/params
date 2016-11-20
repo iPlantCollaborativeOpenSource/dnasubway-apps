@@ -1,0 +1,67 @@
+JOB=${jobName}
+
+# GTF files to merge
+QUERY1=${query1}
+QUERY2=${query2}
+QUERY3=${query3}
+QUERY4=${query4}
+QUERY5=${query5}
+QUERY6=${query6}
+QUERY7=${query7}
+QUERY8=${query8}
+QUERY9=${query9}
+QUERY10=${query10}
+QUERY11=${query11}
+QUERY12=${query12}
+
+# Up to ten samples, up to four replicates each
+# sam1_1,sam1_2,sam1_3,sam1_4...sam10_1,sam10_2,sam10_3,sam10_4
+SAM1_F1=${sam1_f1}
+SAM1_F2=${sam1_f2}
+SAM1_F3=${sam1_f3}
+SAM1_F4=${sam1_f4}
+SAM2_F1=${sam2_f1}
+SAM2_F2=${sam2_f2}
+SAM2_F3=${sam2_f3}
+SAM2_F4=${sam2_f4}
+SAM3_F1=${sam3_f1}
+SAM3_F2=${sam3_f2}
+SAM3_F3=${sam3_f3}
+SAM3_F4=${sam3_f4}
+SAM4_F1=${sam4_f1}
+SAM4_F2=${sam4_f2}
+SAM4_F3=${sam4_f3}
+SAM4_F4=${sam4_f4}
+SAM5_F1=${sam5_f1}
+SAM5_F2=${sam5_f2}
+SAM5_F3=${sam5_f3}
+SAM5_F4=${sam5_f4}
+SAM6_F1=${sam6_f1}
+SAM6_F2=${sam6_f2}
+SAM6_F3=${sam6_f3}
+SAM6_F4=${sam6_f4}
+SAM7_F1=${sam7_f1}
+SAM7_F2=${sam7_f2}
+SAM7_F3=${sam7_f3}
+SAM7_F4=${sam7_f4}
+SAM8_F1=${sam8_f1}
+SAM8_F2=${sam8_f2}
+SAM8_F3=${sam8_f3}
+SAM8_F4=${sam8_f4}
+SAM9_F1=${sam9_f1}
+SAM9_F2=${sam9_f2}
+SAM9_F3=${sam9_f3}
+SAM9_F4=${sam9_f4}
+SAM10_F1=${sam10_f1}
+SAM10_F2=${sam10_f2}
+SAM10_F3=${sam10_f3}
+SAM10_F4=${sam10_f4}
+
+# Supplemental files
+REFGTF=${ref_gtf}
+REFSEQ=${ref_seq}
+
+# --mask-file optional
+MASK=${mask_gtf}
+SKIPCUFFMERGE=${skipCuffmerge}
+USEGTF=${refGTF}

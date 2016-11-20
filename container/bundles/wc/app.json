@@ -1,0 +1,51 @@
+{
+  "name": "dnasubway-wc-singularity-stampede",
+  "label": "DNASubway Word Count",
+  "version": "1.0.0",
+  "helpURI": "http://dnasubway.org/",
+  "defaultQueue": "development",
+  "defaultNodeCount": 1,
+  "defaultProcessorsPerNode": 16,
+  "defaultMemoryPerNode":"4GB",
+  "defaultMaxRunTime": "00:10:00",
+  "available":true,
+  "checkpointable":false,
+  "executionType": "HPC",
+  "executionSystem": "tacc-stampede-vaughn",
+  "parallelism": "SERIAL",
+  "deploymentPath": "vaughn/applications/dnasubway/container/assets",
+  "deploymentSystem": "data.iplantcollaborative.org",
+  "shortDescription": "Counts words. Nuff 'said",
+  "author": "Matthew Vaughn",
+  "templatePath": "wrap-wc.sh",
+  "testPath": "test-wc.sh",
+  "tags": ["core-utils"],
+  "ontology":[],
+  "checkpointable": false,
+  "modules": [],
+  "inputs": [
+    {
+      "id": "input",
+      "details": {
+        "label": "Plain text file",
+        "showAttribute": false
+      },
+      "semantics": {
+        "minCardinality": 1,
+        "ontology": [
+          "http://sswapmeet.sswap.info/util/Sequence"
+        ],
+        "fileTypes": [
+          "text-0"
+        ]
+      },
+      "value": {
+        "default": "agave://data.iplantcollaborative.org/vaughn/wc/test.txt",
+        "required": true,
+        "visible": true
+      }
+    }
+  ],
+  "parameters": [],
+  "outputs": []
+}

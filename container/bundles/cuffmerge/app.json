@@ -1,0 +1,361 @@
+{
+    "name": "dnasubway-cuffmerge-singularity-stampede",
+    "parallelism": "SERIAL",
+    "version": "2.1.1",
+    "helpURI": "http://cufflinks.cbcb.umd.edu/",
+    "label": "DNASubway CuffMerge",
+    "shortDescription": "Transcript assembly and merge for RNA-Seq data",
+    "longDescription": "",
+    "author": "John Fonner; Matthew Vaughn",
+    "tags": [
+        "next-gen",
+        "assembly",
+        "rnaseq",
+        "greenline",
+        "dnasubway"
+    ],
+    "ontology": [
+        "http://edamontology.org/topic_0091", "http://edamontology.org/operation_3258"
+    ],
+    "executionSystem": "tacc-stampede-vaughn",
+    "executionType": "HPC",
+    "deploymentPath": "vaughn/applications/dnasubway/container/assets",
+    "templatePath": "wrap-cuffmerge.sh",
+    "testPath": "test-cuffmerge.sh",
+    "checkpointable": false,
+    "defaultMaxRunTime": "12:00:00",
+    "defaultNodeCount": 1,
+    "defaultProcessorsPerNode": 16,
+     "defaultMemoryPerNode":"16GB",
+    "defaultQueue": "serial",
+    "modules": [],
+    "inputs": [
+        {
+            "id": "ref_seq",
+            "value": {
+                "default": "agave://data.iplantcollaborative.org/shared/iplant_DNA_subway/genomes/arabidopsis_thaliana/genome.fas",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Genome FASTA file",
+                "description": "Allows CuffDiff to run its new bias detection and correction algorithm which can significantly improve accuracy of transcript abundance estimates."
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Annotation"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "FASTA-0"
+                ]
+            }
+        },
+        {
+            "id": "query1",
+            "value": {
+                "default": "agave://data.iplantcollaborative.org/shared/iplant_training/rna-seq_tuxedo/C_cuffmerge/WT_rep1_transcripts.gtf",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #1",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query2",
+            "value": {
+                "default": "agave://data.iplantcollaborative.org/shared/iplant_training/rna-seq_tuxedo/C_cuffmerge/WT_rep2_transcripts.gtf",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #2",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query3",
+            "value": {
+                "default": "agave://data.iplantcollaborative.org/shared/iplant_training/rna-seq_tuxedo/C_cuffmerge/hy5_rep1_transcripts.gtf",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #3",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query4",
+            "value": {
+                "default": "agave://data.iplantcollaborative.org/shared/iplant_training/rna-seq_tuxedo/C_cuffmerge/hy5_rep2_transcripts.gtf",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #4",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query5",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #5",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query6",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #6",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query7",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #7",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query8",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #8",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query9",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #9",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query10",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #10",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query11",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #11",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        },
+        {
+            "id": "query12",
+            "value": {
+                "default": "",
+                "validator": "",
+                "required": false,
+                "visible": true
+            },
+            "details": {
+                "label": "Cufflinks transcripts.gtf #12",
+                "description": ""
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Alignment"
+                ],
+                "fileTypes": [
+                    "GTF-2.2"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "jobName",
+            "value": {
+                "default": "cuffmerge",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "job name",
+                "description": "The name of the itinerant cuffmerge job"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "description",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Description",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+    "outputs": []
+}

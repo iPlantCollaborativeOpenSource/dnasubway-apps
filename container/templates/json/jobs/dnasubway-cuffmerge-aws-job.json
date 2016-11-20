@@ -1,0 +1,18 @@
+{
+  "name":"cuffmerge",
+  "appId": "dnasubway-cuffmerge-aws-us-west-1-2.1.1",
+  "maxRunTime": "04:00:00",
+  "archive": false,
+  "archiveSystem": "data.iplantcollaborative.org",
+  "inputs": {
+    "ref_seq": "agave://data.iplantcollaborative.org/shared/iplant_DNA_subway/genomes/arabidopsis_thaliana/genome.fas",
+    "query1": "agave://data.iplantcollaborative.org/shared/iplant_training/rna-seq_tuxedo/C_cuffmerge/hy5_rep1_transcripts.gtf",
+    "query2": "agave://data.iplantcollaborative.org/shared/iplant_training/rna-seq_tuxedo/C_cuffmerge/hy5_rep2_transcripts.gtf",
+    "query3": "agave://data.iplantcollaborative.org/shared/iplant_training/rna-seq_tuxedo/C_cuffmerge/WT_rep1_transcripts.gtf",
+    "query4": "agave://data.iplantcollaborative.org/shared/iplant_training/rna-seq_tuxedo/C_cuffmerge/WT_rep2_transcripts.gtf"
+  },
+  "parameters": {
+    "jobName": "cuffmerge",
+    "description": ""
+  }
+}

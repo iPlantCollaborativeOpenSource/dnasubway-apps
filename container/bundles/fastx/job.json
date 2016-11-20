@@ -1,0 +1,26 @@
+{
+  "name":"fastx",
+  "appId": "dnasubway-fastx-singularity-stampede-0.0.14",
+  "maxRunTime": "00:30:00",
+  "batchQueue": "development",
+  "archive": false,
+  "archiveSystem": "data.iplantcollaborative.org",
+  "inputs": {
+    "seq1": "agave://data.iplantcollaborative.org/shared/iplant_DNA_subway/sample_data/fastq/arabidopsis_thaliana/single_end/WT_rep2.fastq.gz"
+  },
+  "parameters": {
+    "jobName": "tophat",
+    "min_quality": 20,
+    "quality_threshold": 20,
+    "percent_bases": 50,
+    "min_length": 20,
+    "perform_indexing": 0
+  },
+  "notifications": [
+    {
+      "url":"http://requestbin.agaveapi.co/1jqkptm1?job_id=${JOB_ID}&status=${JOB_STATUS}",
+      "event":"*",
+      "persistent":true
+    }
+  ]
+}

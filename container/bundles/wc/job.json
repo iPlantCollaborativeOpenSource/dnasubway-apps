@@ -1,0 +1,20 @@
+{
+  "name":"wc-test",
+  "appId": "dnasubway-wc-singularity-stampede-1.0.0",
+  "maxRunTime": "00:05:00",
+  "batchQueue": "development",
+  "archive": false,
+  "archiveSystem": "data.iplantcollaborative.org",
+  "inputs": {
+    "input": "agave://data.iplantcollaborative.org/vaughn/wc/test.txt"
+  },
+  "parameters": {
+  },
+  "notifications": [
+    {
+      "url":"http://requestbin.agaveapi.co/1k6c17u1?job_id=${JOB_ID}&status=${JOB_STATUS}",
+      "event":"*",
+      "persistent":true
+    }
+  ]
+}

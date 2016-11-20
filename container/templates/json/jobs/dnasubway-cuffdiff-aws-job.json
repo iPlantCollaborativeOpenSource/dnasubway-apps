@@ -1,0 +1,38 @@
+{
+  "name":"cuffdiff",
+  "appId": "dnasubway-cuffdiff-aws-us-west-1-2.1.1",
+  "maxRunTime": "04:00:00",
+  "archive": false,
+  "archiveSystem": "data.iplantcollaborative.org",
+  "inputs": {
+    "query1": "vaughn/dnalc/ghiban/DNASubway/project-389/cl2576/cufflinks_out/WT_rep1-th2552-cl2576.gtf",
+    "query2": "vaughn/dnalc/ghiban/DNASubway/project-389/cl2577/cufflinks_out/WT_rep2-th2553-cl2577.gtf",
+    "query3": "vaughn/dnalc/ghiban/DNASubway/project-389/cl2574/cufflinks_out/ra1_rep1-th2550-cl2574.gtf",
+    "query5": "vaughn/dnalc/ghiban/DNASubway/project-389/cl2575/cufflinks_out/ra1_rep2-th2551-cl2575.gtf",
+    "sam1_f1": "vaughn/dnalc/ghiban/DNASubway/project-389/th2552/tophat_out/WT_rep1-th2552.bam",
+    "sam1_f2": "vaughn/dnalc/ghiban/DNASubway/project-389/th2553/tophat_out/WT_rep2-th2553.bam",
+    "sam2_f1": "vaughn/dnalc/ghiban/DNASubway/project-389/th2550/tophat_out/ra1_rep1-th2550.bam",
+    "sam2_f2": "vaughn/dnalc/ghiban/DNASubway/project-389/th2551/tophat_out/ra1_rep2-th2551.bam",
+    "ref_seq": "/shared/iplant_DNA_subway/genomes/zea_mays/genome.fas",
+    "ref_gtf": "/shared/iplant_DNA_subway/genomes/zea_mays/annotation.gtf"
+  },
+  "parameters": {
+    "jobName": "cuffdiff",
+    "fragLenStdev": 80,
+    "treatAsTimeSeries": false,
+    "compatibleHitsNorm": false,
+    "multiReadCorrect": false,
+    "fdr": 0.05,
+    "min_isoform_Fraction": 0.1,
+    "refGTF": true,
+    "species": "zea_mays",
+    "libraryType": "fr-firststrand",
+    "upperQuartileNorm": false,
+    "fragLenMean": 200,
+    "labels": "sample1,sample2",
+    "totalHitsNorm": true,
+    "skipCuffmerge": false,
+    "poissonDispersion": false,
+    "minAlignmentCount": 10
+  }
+}

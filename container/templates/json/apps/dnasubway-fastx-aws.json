@@ -1,0 +1,167 @@
+{
+    "available":true,
+    "checkpointable":false,
+    "name": "dnasubway-fastx-aws-us-west-1",
+    "label": "DNASubway FastxToolkit",
+    "version": "0.0.13.2.0",
+    "helpURI": "http://hannonlab.cshl.edu/fastx_toolkit/",
+    "defaultQueue": "all.q",
+    "defaultNodeCount": 1,
+    "defaultProcessorsPerNode": 2,
+    "defaultMemoryPerNode":"4GB",
+    "defaultMaxRunTime": "04:00:00",
+    "executionType": "HPC",
+    "executionSystem":"dnasubway-cfncluster.us-west-1.compute.amazonaws.com",
+    "parallelism": "SERIAL",
+    "deploymentPath": "vaughn/applications/dnasubway/docker-cfncluster",
+    "deploymentSystem": "data.iplantcollaborative.org",
+    "shortDescription": "FASTX TOOLKIT short-read pre-processing tools",
+    "longDescription": "",
+    "author": "Cornel Ghiban; James Carson; Matthew Vaughn",
+    "parallelism": "SERIAL",
+    "templatePath": "run-fastx.sh",
+    "testPath": "tests/fastx-test.sh",
+    "tags": [ "next-gen", "quality", "rnaseq", "greenline", "dnasubway" ],
+    "modules": [],
+    "inputs": [
+        {
+            "id": "seq1",
+            "value": {
+                "default": "agave://data.iplantcollaborative.org/shared/iplant_DNA_subway/sample_data/fastq/arabidopsis_thaliana/single_end/WT_rep2.fastq",
+                "validator": "",
+                "required": true,
+                "visible": true
+            },
+            "details": {
+                "label": "FASTQ sequence library 1",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/util/Sequence"
+                ],
+                "minCardinality": 1,
+                "fileTypes": [
+                    "fastq-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "jobName",
+            "value": {
+                "default": "tophat",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "job name",
+                "description": "the name of the itinerant tophat job"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "quality_threshold",
+            "value": {
+                "default": 20,
+                "type": "number",
+                "validator": "",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Minimum quality threshold for trimming",
+                "description": "This is the quality score below which the ends of reads will be trimmed (default: 20)"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:integer"
+                ]
+            }
+        },
+        {
+            "id": "min_length",
+            "value": {
+                "default": 20,
+                "type": "number",
+                "validator": "",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Minimum trimmed read length",
+                "description": "Trimmed sequences shorter than this will be discarded (default: 20)"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:integer"
+                ]
+            }
+        },
+        {
+            "id": "min_quality",
+            "value": {
+                "default": 20,
+                "type": "number",
+                "validator": "",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Minimum quality threshold for filtering",
+                "description": "Reads with the specified percentage of quality scores below this threshold will be filtered out (default: 20)"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:integer"
+                ]
+            }
+        },
+        {
+            "id": "percent_bases",
+            "value": {
+                "default": 50,
+                "type": "number",
+                "validator": "",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Percent bases with minimum or greater quality score",
+                "description": "Sequences with this percentage of low quality bases will be discarded (default: 50)"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:double"
+                ]
+            }
+        },
+        {
+            "id": "perform_indexing",
+            "value": {
+                "default": 0,
+                "type": "number",
+                "validator": "",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Index reads prior to filtering",
+                "description": "For paired end reads, files must be indexed prior to running FastX Toolkit in order to maintain synteny between mates"
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:integer"
+                ]
+            }
+        }
+    ],
+    "outputs": []
+}

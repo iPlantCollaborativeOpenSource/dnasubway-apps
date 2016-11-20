@@ -1,0 +1,4 @@
+*.img
+*.img.bz2
+json/
+*.json
