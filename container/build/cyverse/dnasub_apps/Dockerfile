@@ -15,7 +15,7 @@ RUN mkdir /home/cache
 COPY cache/* /home/cache/
 
 # Install Samtools 0.1.19
-RUN cd /home/cache && tar -jxvf samtools-0.1.19.tar.bz2 && cd samtools-0.1.19 && make && cp samtools /opt/bin/ && cp bcftools/bcftools /opt/bin/ && cp misc/* /opt/bin/ && rm -rf /home/samtools-0.1.19 && rm /home/cache/samtools-0.1.19.tar.bz2
+RUN cd /home/cache && tar -jxvf samtools-0.1.19.tar.bz2 && cd samtools-0.1.19 && make && cp samtools /opt/bin/ && cp bcftools/bcftools /opt/bin/ && cp misc/* /opt/bin/ && ldconfig && rm -rf /home/samtools-0.1.19 && rm /home/cache/samtools-0.1.19.tar.bz2
 
 # Install Picard 1.120
 RUN cd /home/cache && unzip picard-tools-1.120.zip && mv picard-tools-1.120 /opt && rm -rf /home/cache/picard* && chmod -R a+r /opt/picard-tools-1.120
@@ -37,7 +37,7 @@ ENV DNASUB_FASTQC_DIR=/opt/FastQC
 
 # Install FASTX_toolkit
 RUN cd /home/cache && tar xzf libgtextutils-0.7.tar.gz && \
-	cd libgtextutils-0.7 && ./configure && make && make install && \
+	cd libgtextutils-0.7 && ./configure && make && make install && ldconfig && \
 	cd /home/cache && tar xjf fastx_toolkit-0.0.14.tar.bz2 && cd fastx_toolkit-0.0.14 && \
 	export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH && \
 	./configure --prefix=/opt && make && make install && \
@@ -52,12 +52,10 @@ RUN /opt/bin/agave-cli/bin/tenants-init -t $AGAVE_TENANT
 
 ADD ./runners /opt/bin
 
-# Install BioC and cummerbund
+# Install cummerbund
 # These are not identical to the ones on Lonestar or in the bundle
 COPY bio.R .
 RUN /opt/bin/Rscript bio.R
 
 # Just in case
 RUN chmod -R a+rx /opt/bin/*
-
-

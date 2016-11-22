@@ -10,8 +10,8 @@ DEPS = .built.base
 docker-base:
 	build/make-base.sh && touch .built.base
 
-docker-apps: docker-base
-	build/make-apps.sh && touch .built.apps
+docker-apps: .built.apps
+	REBUILD=$(REBUILD_IMG) build/make-apps.sh && touch .built.apps
 
 docker-push: docker-apps
 	build/make-docker-push.sh 
@@ -19,8 +19,11 @@ docker-push: docker-apps
 envs: .built.apps
 	build/make-envs.sh
 
-test: docker-apps
+test: .built.apps
 	build/make-tests.sh
 
+deploy: .built.apps
+	build/make-deploy.sh
+
 clean:
-	rm .built.*
+	rm .built.* && for X in *.gz *.bz2 *.tgz *.zip *.fai *.fa *.fasta *.fas *.fq *.fastq *.bam *.bai *.zip *.env *.variables *.singularity *.stderr; do find . -name "$$X" -exec rm {} \;; done

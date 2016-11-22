@@ -1,7 +1,7 @@
 {
-  "name": "tophat-refprep",
+  "name": "test-tophat-refprep",
   "maxRunTime": "01:00:00",
-  "appId": "dnasubway-tophat-refprep-aws-us-west-1-2.0.11.1",
+  "appId": "dnasubway-tophat-refprep-singularity-stampede-2.0.11.1",
   "archive": false,
   "inputs": {
     "referenceFasta": "agave://data.iplantcollaborative.org/shared/iplant_DNA_subway/genomes/arabidopsis_thaliana/genome.fas"

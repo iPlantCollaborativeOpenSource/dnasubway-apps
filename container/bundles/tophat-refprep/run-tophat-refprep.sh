@@ -1,5 +1,4 @@
-# Ported to use Docker image iplantc/dnasub_apps
-# Scripts at /opt/scripts/tophat
+#!/usr/bin/env bash
 
 #----
 # Script for creating tar bundle of reference fasta and its index files for tophat/bowtie
@@ -7,12 +6,19 @@
 # Bundles everything up
 #----
 
-. $PWD/app_begin.sh
+# Convenience functions
+echoerr() { echo -e "$@\n" 1>&2; }
+if [ "${DEBUG}" == "1" ];
+then
+    set -x
+fi
 
+# inputs
 ref=${referenceFasta}
-cleanup=${cleanupParameter}
-echo "Clean up parameter is now set to:"
-echo ${cleanup}
+# parameters
+cleanupParameter=${cleanupParameter}
+# outputs
+echo "Clean up parameter set to: ${cleanupParameter}"
 
 # is input compressed? if so, uncompress and update with new filename
 ref_ext="${ref##*.}"
@@ -27,12 +33,12 @@ gzip_output=1
 archive_extension="tar"
 if [ ${gzip_output} = 1 ]; then compress_flag="z"; archive_extension="tgz"; else compress_flag=""; fi
 
-$DOCKER_APP_RUN samtools faidx ${ref}
-$DOCKER_APP_RUN bowtie2-build -q ${ref} ${ref}
+samtools faidx ${ref}
+bowtie2-build -q ${ref} ${ref}
 
-$DOCKER_APP_RUN java -Xmx4g -jar /opt/picard-tools-1.120/CreateSequenceDictionary.jar R=${ref} O=${rb}.dict
+java -Xmx4g -jar ${DNASUB_PICARD_DIR}/CreateSequenceDictionary.jar R=${ref} O=${rb}.dict
 chmod a+rw ${ref}*
-$DOCKER_APP_RUN tar -c${compress_flag}f ${rb}.${archive_extension} ${ref} ${ref}.fai ${rb}.dict ${ref}.1.bt2 ${ref}.2.bt2 ${ref}.3.bt2 ${ref}.4.bt2 ${ref}.rev.1.bt2 ${ref}.rev.2.bt2
+tar -c${compress_flag}f ${rb}.${archive_extension} ${ref} ${ref}.fai ${rb}.dict ${ref}.1.bt2 ${ref}.2.bt2 ${ref}.3.bt2 ${ref}.4.bt2 ${ref}.rev.1.bt2 ${ref}.rev.2.bt2
 
 if [ ${cleanupParameter} ]; then echo "Cleaning up input and intermediate files"
 	rm ${ref}; rm ${ref}.fai; rm ${rb}.dict
@@ -41,5 +47,7 @@ else
 	echo "Skipping clean up"
 fi
 
-. $CWD/app_end.sh
-
+if [ "${DEBUG}" == "1" ];
+then
+    set +x
+fi

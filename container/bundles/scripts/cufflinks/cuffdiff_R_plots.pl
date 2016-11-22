@@ -58,7 +58,7 @@ END
 # Source: http://stackoverflow.com/questions/24999983/r-unable-to-start-device-png-capabilities-has-true-for-png
 
 open RS, ">cuffdiff_out/basic_plots.R";
-print RS "options(bitmapType='cairo')";
+print RS "options(bitmapType='cairo')\n";
 print RS $r;
 close RS;
 

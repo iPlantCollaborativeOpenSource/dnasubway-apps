@@ -1,3 +1,9 @@
+build/cyverse/apps
+build/cyverse/dnasub_apps/cache
+assets/*
+.built.*
+*.img
+*.img.bz2
 genome.*
 annotation.*
 original.*
@@ -9,6 +15,7 @@ original.*
 *.fai
 *.fa
 *.fasta
+*.fas
 *.fq
 *.fastq
 *.bam
@@ -17,4 +24,3 @@ original.*
 *.env
 *.variables
 *.singularity
-*.bt2

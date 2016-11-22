@@ -1,5 +1,5 @@
 {
-  "name":"fastqc",
+  "name":"test-fastqc",
   "appId": "dnasubway-fastqc-singularity-stampede-0.11.4.0",
   "maxRunTime": "00:15:00",
   "batchQueue": "development",

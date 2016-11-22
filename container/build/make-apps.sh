@@ -1,17 +1,19 @@
 #!/bin/bash
 
-APPLIST="wc fastqc tophat fastx cufflinks cuffmerge cuffdiff"
+APPLIST="wc fastqc tophat fastx cufflinks cuffmerge cuffdiff tophat-refprep"
 
-WORKDIR=$PWD
-BUILD_DIR=${WORKDIR}/build/cyverse
-PKG_DIR=${WORKDIR}/build/cyverse/dnasub_apps/cache
+IMG_ORG="cyverse"
+IMG_TAG="dnasub_apps"
 REBUILD=${REBUILD:-1}
-IMGNAME="cyverse-dnasub_apps.img"
-
 MD5APP="openssl md5 "
 
-mkdir -p $PKG_DIR
-cd $PKG_DIR
+WORKDIR=$PWD
+BUILD_DIR=${WORKDIR}/build/${IMG_ORG}
+PKG_CACHE=${BUILD_DIR}/${IMG_TAG}/cache
+IMGNAME="${IMG_ORG}-${IMG_TAG}.img"
+
+mkdir -p ${PKG_CACHE}
+cd ${PKG_CACHE}
 
 for U in https://netcologne.dl.sourceforge.net/project/samtools/samtools/0.1.19/samtools-0.1.19.tar.bz2 \
          https://github.com/agordon/fastx_toolkit/releases/download/0.0.14/fastx_toolkit-0.0.14.tar.bz2 \
@@ -49,6 +51,7 @@ then
   cd $BUILD_DIR/dnasub_apps
 
     echo "Building apps container..."
+    mkdir -p tmp
   	docker build -f Dockerfile -t cyverse/dnasub_apps . && \
     rm -rf runners && \
     rm -rf scripts && \
@@ -56,6 +59,7 @@ then
 
     if [ ! -f "${WORKDIR}/assets/${IMGNAME}.bz2" ]
     then
+      echo "Building Singularity image..."
     	docker run \
     	-v /var/run/docker.sock:/var/run/docker.sock \
     	-v $PWD:/output \

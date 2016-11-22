@@ -1,5 +1,5 @@
 {
-  "name":"fastx",
+  "name":"test-fastx",
   "appId": "dnasubway-fastx-singularity-stampede-0.0.14",
   "maxRunTime": "00:30:00",
   "batchQueue": "development",

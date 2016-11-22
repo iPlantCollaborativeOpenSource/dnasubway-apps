@@ -1,5 +1,5 @@
 {
-  "name":"cuffdiff",
+  "name":"test-cuffdiff",
   "appId": "dnasubway-cuffdiff-singularity-stampede-2.1.1",
   "maxRunTime": "04:00:00",
   "batchQueue": "serial",

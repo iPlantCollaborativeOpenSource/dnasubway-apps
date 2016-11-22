@@ -1,5 +1,5 @@
 {
-  "name":"cuffmerge",
+  "name":"test-cuffmerge",
   "appId": "dnasubway-cuffmerge-singularity-stampede-2.1.1",
   "maxRunTime": "00:10:00",
   "batchQueue": "development",

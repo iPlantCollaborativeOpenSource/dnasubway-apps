@@ -1,5 +1,5 @@
 {
-  "name":"tophat",
+  "name":"test-tophat",
   "appId": "dnasubway-tophat-singularity-stampede-2.0.11.1",
   "maxRunTime": "01:00:00",
   "batchQueue": "development",
