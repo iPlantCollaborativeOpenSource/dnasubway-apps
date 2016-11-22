@@ -112,8 +112,24 @@ Here's an example, from the *fastx* application:
 └── wrap-fastx.sh
 ```
 
-_JSON files_: The ```app.json``` is the current Agave representation for the app, where parameters, inputs, outputs, resourcing, deployment details,, etc is described and the ```job.json``` is a sample job file for running an example instance of the app. Neither is template generated or maintained as part of the build process at present.
+_Wrap_: This is the template file an Agave .ipcexe job scripts, but can also be used in other contexts. In the context of an Agave job, the file is treated as a template into which parameter and input values are substituted. When run locally or as part of a test, those come in via environment variables set by the test script. Within the script, the required input and parameter variables are serialized out to an .env file that can be read by the Docker runtime. They are also serialized out to a file that can be sourced to set up a Singularity runtime. The wrapper behvaior can be modified by setting the following variables:
 
+* TYPE : Must be ```docker``` or ```singularity``` (default: ```singularity```)
+* DOCKER_ORG: Defaults to ```cyverse```
+* DOCKER_IMAGE: Defaults to ```dnasub_apps```
+* SINGULARITY_IMAGE: Defaults to ```DOCKER_ORG-DOCKER_IMAGE.img```
+
+The assumption for runing based on Docker under Agave is that the Docker image is available either on the system or via Dockerhub. For Singularity, the assumption is that a Singularity image based on the Docker image is present in the ```deploymentPath``` of the Agave application and that said image has been *compressed with bzip2*. Our build environment demonstrates automated production of a properly formatted ```cyverse-dnasub_apps.img.bz2``` image. 
+
+The wrapper invokes an app-specific entrypoint defined by ```run-<appname>.sh``` and bundled into the apps image. At present, we do not inspect or honor any resource restrictions or requirements sent by Agave when executing a Docker container. This will change in the future. 
+
+_Run_
+
+_Env_: Local test-script that launches the app container and runs the default entrypoint. Useful for debugging. Accessible via ```build/bundles/<appname>/env-<appname>.sh``` or via ```APPLIST=<appname> make envs```.
+
+_Test_: Local test-script that sets up inputs and parameters via environment variables, then launches the app-specific entrypoint script. Note in some of the examples our simple means of staging data files into place and cacheing them. Accessible via ``build/bundles/<appname>/test-<appname>.sh``` or via ```APPLIST=<appname> make tests```.
+
+_JSON files_: The ```app.json``` is the current Agave representation for the app, where parameters, inputs, outputs, resourcing, deployment details,, etc is described and the ```job.json``` is a sample job file for running an example instance of the app. Neither is template generated or maintained as part of the build process at present.
 
 Build base containers from source
 ---------------------------------
