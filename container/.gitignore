@@ -1,5 +1,4 @@
-build/cyverse/apps
-build/cyverse/dnasub_apps/cache
+build/cyverse/apps/*
 assets/*
 .built.*
 *.img

@@ -1,4 +1,4 @@
-cache/
+cache/*
 runners/
 scripts/
-tmp/
+tmp/*
