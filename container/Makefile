@@ -26,4 +26,7 @@ deploy: .built.apps
 	build/make-deploy.sh
 
 clean:
-	rm .built.* && for X in *.gz *.bz2 *.tgz *.zip *.fai *.fa *.fasta *.fas *.fq *.fastq *.bam *.bai *.zip *.env *.variables *.singularity *.stderr; do find . -name "$$X" -exec rm {} \;; done
+	rm .built.* assets/*
+
+dist-clean: clean
+	build/make-very-clean.sh

@@ -19,7 +19,7 @@ WORKDIR /home
 # Add specific user, which we will run as if not specified
 
 # Basics
-RUN yum -y install git curl wget which bzip2 && yum clean all
+RUN yum -y install git curl wget which bzip2 tree && yum clean all
 
 ADD default_entrypoint.sh /usr/local/bin
 RUN chmod a+x /usr/local/bin/default_entrypoint.sh

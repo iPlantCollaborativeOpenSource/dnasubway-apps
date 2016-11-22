@@ -1,30 +1,32 @@
 #!/bin/bash
 
 echo ""
-echo "##################################################"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 
+echo "AGAVE_TENANT: $AGAVE_TENANT"
 echo "APP: $_APP"
 echo "AUTHOR: $_AUTHOR"
 echo "LICENSE: $_LICENSE"
 echo "VERSION: $_VERSION"
-echo "AGAVE_TENANT: $AGAVE_TENANT"
-echo "PATH: $PATH"
+echo "BIN_PATH: $PATH"
+echo "LIBRARY_PATH: $LIBRARY_PATH"
 
-echo "--------------------------------------------------"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 
 echo "ENVIRONMENT:"
-env
+env | grep -v "^_"
 
-echo "--------------------------------------------------"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 
 echo "SYSTEM CONTEXT:"
-uname -a
-df -l
-ls .
+echo "UNAME:  $(uname -a)"
+echo -e "VOLUMES:\n$(df -l)"
+echo "PWD: $(pwd)"
+echo -e "PWDTREE:\n$(tree -L 3)"
 
-echo "--------------------------------------------------"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 
 echo "IMAGE ENTRYPOINT: $0"
 
-echo "##################################################"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 echo ""

@@ -23,6 +23,7 @@
         "dnasubway"],
  "ontology":["http://edamontology.org/topic_0091", "http://edamontology.org/operation_3742"],
  "modules":[],
+ "outputs":[],
  "inputs":[
     {"id":"query1",
      "details":
