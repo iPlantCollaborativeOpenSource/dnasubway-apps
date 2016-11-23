@@ -35,14 +35,12 @@ RUN yum -y  install \
 
 # Assumes package archive files in local 'cache' directory
 RUN mkdir /tmp/cache
-COPY ./cache/* /tmp/cache/
-
-RUN ls /tmp/cache
 
 # Install curl 7.5.1.0, over-ride system curl
 # We do this because R can't interact with the BioC and
 # CRAN infrastructure if its built against outdated
 # versions of libcurl - wierd DNS and SSL errors abound
+COPY cache/curl-7.51.0.tar.gz /tmp/cache
 RUN cd /tmp/cache && \
     tar zxf curl-7.51.0.tar.gz && \
     cd curl-7.51.0 && \
@@ -52,6 +50,7 @@ RUN cd /tmp/cache && \
     cd /tmp/cache && rm -rf curl-7.51.0*
 
 # Python 2.7.1 into /opt to avoid breaking yum
+COPY cache/Python-2.7.1.tar.bz2 /tmp/cache
 RUN cd /tmp/cache && \
     tar xf Python-2.7.1.tar.bz2 && \
     cd Python-2.7.1 && \
@@ -61,6 +60,7 @@ RUN cd /tmp/cache && \
     cd /tmp/cache && rm -rf Python-2.7.1*
 
 # Pip and virtualenv
+COPY cache/distribute-0.6.27.tar.gz /tmp/cache
 RUN cd /tmp/cache && \
     tar xf distribute-0.6.27.tar.gz && \
     cd distribute-0.6.27 && \
@@ -70,6 +70,7 @@ RUN cd /tmp/cache && \
 
 
 # R 3.2.1 with graphics, modern libcurl, and cairo support
+COPY cache/R-3.2.1.tar.gz /tmp/cache
 RUN cd /tmp/cache && \
     tar -zxf R-3.2.1.tar.gz && \
     cd R-3.2.1 && \
@@ -79,8 +80,6 @@ RUN cd /tmp/cache && \
     cd /tmp/cache && rm -rf R-3.2.1*
 
 # Bioconductor base
-#RUN mkdir -p /tmp/rstats
-#ENV TMPDIR /tmp/rstats
 COPY bio.R .
-RUN /opt/bin/Rscript bio.R
-#ENV TMPDIR /tmp
+RUN /opt/bin/Rscript bio.R && rm -rf bio.R && rm -rf /tmp/*
+

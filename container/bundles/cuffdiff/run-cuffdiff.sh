@@ -9,6 +9,13 @@ then
     set -x
 fi
 
+function handle_error {
+  echo "An internal error has occurred inside this application." > error.log
+  echo "cuffmerge_out" >> .agave.archive
+  echo "cuffdiff_out" >> .agave.archive
+}
+trap cleanup ERR
+
 OUTPUT_DIR=cuffdiff_out
 
 JOB=${jobName}
@@ -84,7 +91,7 @@ MINALIGNMENTCOUNT=${minAlignmentCount}
 FDR=${fdr}
 FRAGLENMEAN=${fragLenMean}
 FRAGLENSTDEV=${fragLenStdev}
-REFGTF=${refGTF}
+USEGTF=${refGTF}
 SKIPCUFFMERGE=${skipCuffmerge}
 # outputs
 
@@ -121,7 +128,7 @@ else
     fi
 
     if [[ $USEGTF -eq 1 ]]; then
-        INCLUDE_REF_GTF=" -g $REFGTF "
+        INCLUDE_REF_GTF=" -g $REF_GTF "
         echoerr "Reference GTF being used at Cuffmerge"
     else
         INCLUDE_REF_GTF=""
@@ -148,7 +155,7 @@ else
 fi
 
 if [[ -z $ANNOTATION ]]; then
-    ANNOTATION=$REFGTF
+    ANNOTATION=${REF_GTF}
 fi
 
 # not supported/recommended

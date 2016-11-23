@@ -8,6 +8,7 @@ ENV _AUTHOR Matthew Vaughn
 ENV _LICENSE BSD-3-Clause
 ENV _VERSION 0.7.0
 ENV AGAVE_TENANT iplantc.org
+ENV TERM xterm
 
 # Set up /usr/local and /opt
 RUN mkdir -p /opt/bin

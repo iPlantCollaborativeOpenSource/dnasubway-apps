@@ -8,9 +8,9 @@ MD5APP="openssl md5 "
 DEPS = .built.base
 
 docker-base:
-	build/make-base.sh && touch .built.base
+	if [ ! -f .built.base ]; then build/make-base.sh && touch .built.base; fi
 
-docker-apps: .built.apps
+docker-apps: .built.base
 	REBUILD=$(REBUILD_IMG) build/make-apps.sh && touch .built.apps
 
 docker-push: docker-apps
@@ -23,10 +23,13 @@ test: .built.apps
 	build/make-tests.sh
 
 deploy: .built.apps
-	build/make-deploy.sh
+	build/make-deploy.sh 
+
+deploy-verify: 
+	build/make-deploy-verify.sh
 
 clean:
-	rm .built.* assets/*
+	rm -rf .built.* assets/*
 
 dist-clean: clean
 	build/make-very-clean.sh

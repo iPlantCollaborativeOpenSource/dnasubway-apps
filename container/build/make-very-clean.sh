@@ -5,7 +5,7 @@ echo "Cleaning job files and other cruft..."
 while read X
 do
 	echo "  $X files"
-	find . -name "$X" -exec rm {} \;
+	find . -name "$X" -exec rm -rf {} \;
 done <<CLEAN
 .built.*
 *.img
@@ -14,6 +14,7 @@ genome.*
 annotation.*
 original.*
 *.original
+*.gtf
 *.gz
 *.bz2
 *.tgz
