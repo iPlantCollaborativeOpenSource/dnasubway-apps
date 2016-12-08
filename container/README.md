@@ -152,6 +152,14 @@ Build apps container from source
 
 ```
 make docker-apps
+
+```
+
+Test apps locally using Docker
+------------------------------
+
+```
+bundles/<appname>/test-<appname>.sh
 ```
 
 Deploy to Agave
