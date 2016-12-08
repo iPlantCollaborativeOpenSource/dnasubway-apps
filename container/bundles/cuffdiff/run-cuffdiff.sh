@@ -281,10 +281,10 @@ wget --tries=10 "https://agave.iplantc.org/files/v2/download/ghiban/system/data.
 
 if [[ -e ${species}.txt ]]; then
         echoerr "BioMart annotations exist, grabbing them, then running cuffdiff_sort.pl"
-        perl /opt/scripts/cufflinks/cuffdiff_sort.pl /home $LABELS ${species}
+        perl /opt/scripts/cufflinks/cuffdiff_sort.pl . $LABELS ${species}
 else
         echoerr "BioMart annotations do not exist, running cuffdiff_sort.pl without them"
-        perl /opt/scripts/cufflinks/cuffdiff_sort.pl /home $LABELS
+        perl /opt/scripts/cufflinks/cuffdiff_sort.pl . $LABELS
 fi
 
 echoerr "Done!"
