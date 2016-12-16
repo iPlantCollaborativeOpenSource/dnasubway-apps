@@ -23,6 +23,13 @@ then
   echo "Critical error: Docker 1.10 or higher is required to build a Singularity image."
 fi
 
+# Docker2Singularity not updated to 1.13 yet. This will evenutally need to 
+# be a bunch of switch statements or other mappings between versions
+if [ "$DOCKER_VERSION" == "1.13" ];
+then
+    DOCKER_VERSION="1.12"
+fi
+
 mkdir -p ${PKG_CACHE}
 cd ${PKG_CACHE}
 

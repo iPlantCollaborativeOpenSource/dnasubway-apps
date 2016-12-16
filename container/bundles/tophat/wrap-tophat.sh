@@ -17,7 +17,7 @@ rm -rf "$DOCK_ENV*"
 echo "query1=${query1}" >> ${DOCK_ENV}
 echo "query2=${query2}" >> ${DOCK_ENV}
 echo "genome=${genome}" >> ${DOCK_ENV}
-echo "gtf=${annotation}" >> ${DOCK_ENV}
+echo "annotation=${annotation}" >> ${DOCK_ENV}
 echo "jobName=${jobName}" >> ${DOCK_ENV}
 echo "output_dir=tophat_out" >> ${DOCK_ENV}
 echo "mate_inner_dist=${mate_inner_dist}" >> ${DOCK_ENV}
@@ -33,7 +33,7 @@ echo "max_multihits=${max_multihits}" >> ${DOCK_ENV}
 echo "segment_length=${segment_length}" >> ${DOCK_ENV}
 echo "library_type=${library_type}" >> ${DOCK_ENV}
 echo "read_mismatches=${read_mismatches}" >> ${DOCK_ENV}
-echo "no_novel_junc=${no_novel_juncs}" >> ${DOCK_ENV}
+echo "no_novel_juncs=${no_novel_juncs}" >> ${DOCK_ENV}
 echo "THREADS=15" >> ${DOCK_ENV}
 
 #Container exec
@@ -60,6 +60,8 @@ then
 		  echo "export $p" >> ${SING_ENV}
 		done <${DOCK_ENV}
 		source ${SING_ENV}
+
+		echo "${SINGULARITY_CONTAINER}" >> .agave.archive
 
 		singularity exec ${SINGULARITY_CONTAINER} ${ENTRYPOINT}
 	fi

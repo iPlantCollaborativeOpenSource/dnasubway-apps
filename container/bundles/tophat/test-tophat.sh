@@ -32,6 +32,7 @@ fi
 export query1="WT_rep1.fastq"
 export genome="genome.tgz"
 export annotation="annotation.gtf"
+export no_novel_juncs=1
 export max_deletion_length="3"
 export splice_mismatches="0"
 export min_anchor_length="8"

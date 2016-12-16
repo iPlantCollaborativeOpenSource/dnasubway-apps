@@ -30,7 +30,7 @@ Max_multihits=${max_multihits}
 Segment_length=${segment_length}
 Library_type=${library_type}
 Read_mismatches=${read_mismatches}
-No_novel_junc=${no_novel_juncs}
+No_novel_juncs=${no_novel_juncs}
 
 date1=$(date +"%s")
 
@@ -145,7 +145,7 @@ fi
 if [[ -n $GTF_F  ]];then
     ARGS="$ARGS -G $GTF_F"
 fi
-if [[ -n $No_novel_junc ]] && [ $No_novel_junc == 1 ]; then
+if [[ -n $No_novel_juncs ]] && [ $No_novel_juncs == 1 ]; then
     ARGS="${ARGS} --no-novel-juncs"
 fi
 

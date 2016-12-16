@@ -49,6 +49,8 @@ then
 		done <${DOCK_ENV}
 		source ${SING_ENV}
 
+		echo "${SINGULARITY_CONTAINER}" >> .agave.archive
+
 		singularity exec ${SINGULARITY_CONTAINER} ${ENTRYPOINT}
 	fi
 	
