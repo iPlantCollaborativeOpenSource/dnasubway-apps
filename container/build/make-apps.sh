@@ -5,12 +5,23 @@ APPLIST="wc fastqc tophat fastx cufflinks cuffmerge cuffdiff tophat-refprep"
 IMG_ORG="cyverse"
 IMG_TAG="dnasub_apps"
 REBUILD=${REBUILD:-1}
-MD5APP="openssl md5 "
 
 WORKDIR=$PWD
 BUILD_DIR=${WORKDIR}/build/${IMG_ORG}
 PKG_CACHE=${BUILD_DIR}/${IMG_TAG}/cache
 IMGNAME="${IMG_ORG}-${IMG_TAG}.img"
+
+MD5APP="openssl md5 "
+# Todo: Validation test for MD5APP
+
+# Get major.minor Docker version.
+# Error if can't find Docker or version too low.
+DOCKER_VERSION=$(docker --version | egrep -o  "\d\.\d+")
+echo "Docker version ${DOCKER_VERSION} detected."
+if [ $(echo ${DOCKER_VERSION}'<'1.10 | bc -l) == 1 ];
+then
+  echo "Critical error: Docker 1.10 or higher is required to build a Singularity image."
+fi
 
 mkdir -p ${PKG_CACHE}
 cd ${PKG_CACHE}
@@ -64,7 +75,7 @@ then
     	-v /var/run/docker.sock:/var/run/docker.sock \
     	-v $PWD:/output \
     	--privileged -t --rm \
-    	singularityware/docker2singularity \
+    	singularityware/docker2singularity:${DOCKER_VERSION} \
     	cyverse/dnasub_apps && \
       find . -name "*.img" -exec mv {} ${WORKDIR}/assets/${IMGNAME} \; && \
       echo "Compressing ${IMGNAME} ..." && \
